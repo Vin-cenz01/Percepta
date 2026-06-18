@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Percepta | AI Navigation Assistant</title>
+  <meta name="description" content="Percepta uses AI-powered computer vision to help visually impaired users navigate safely with real-time obstacle detection and voice guidance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <span>Percepta</span>
+      </div>
+      <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#problem">Problem</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">How It Works</a>
+        <a href="#technology">Technology</a>
+      </nav>
+      <a class="nav-cta" href="#footer">Contact</a>
+    </header>
+
+    <main>
+      <section class="hero section">
+        <div class="hero-content">
+          <span class="eyebrow">AI Navigation Assistant</span>
+          <h1>Percepta</h1>
+          <p class="subtitle">AI-Powered Real-Time Navigation for the Visually Impaired</p>
+          <p class="description">Percepta uses computer vision and artificial intelligence to detect obstacles, classify hazards, determine their location, and provide instant navigation assistance through audio alerts.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#dashboard">View Live Dashboard</a>
+            <a class="button secondary" href="#technology">Explore Technology</a>
+          </div>
+          <div class="hero-metrics">
+            <div>
+              <strong>99.2%</strong>
+              <span>Detection Accuracy</span>
+            </div>
+            <div>
+              <strong>&lt;100ms</strong>
+              <span>Alert Response</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="camera-panel">
+            <div class="camera-top">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="camera-feed">
+              <img id="live-stream" class="live-stream" alt="Live navigation feed" />
+              <div class="feed-overlay"></div>
+              <div class="feed-lines"></div>
+              <div class="bounding-box box-1"></div>
+              <div class="bounding-box box-2"></div>
+              <div class="bounding-box box-3"></div>
+              <div class="detection-zone zone-center"></div>
+              <div class="path-line"></div>
+              <div class="alert-card">
+                <span class="dot"></span>
+                <div>
+                  <p>Current Alert</p>
+                  <strong id="hero-alert-text">Monitoring</strong>
+                </div>
+              </div>
+            </div>
+            <div class="camera-footer">
+              <div>
+                <span>Live Feed</span>
+                <strong>ESP32-CAM</strong>
+              </div>
+              <div class="signal-pill" id="connection-pill">● Connecting</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboard" class="dashboard section">
+        <div class="section-heading centered">
+          <span class="eyebrow">Live Dashboard</span>
+          <h2>Navigation status</h2>
+        </div>
+        <div class="dashboard-grid">
+          <div class="dashboard-card main-card">
+            <div class="dashboard-head">
+              <span>System Status</span>
+              <span class="pill active" id="alert-badge">IDLE</span>
+            </div>
+            <h3 id="live-state">Waiting for stream</h3>
+            <p id="live-detail">The detector will show the latest obstacle guidance here.</p>
+            <div class="dashboard-metrics">
+              <div>
+                <span>Closest object</span>
+                <strong id="closest-object">—</strong>
+              </div>
+              <div>
+                <span>Direction</span>
+                <strong id="closest-direction">—</strong>
+              </div>
+              <div>
+                <span>Free path</span>
+                <strong id="free-direction">—</strong>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-card zone-card">
+            <div class="dashboard-head small">
+              <span>Detection zones</span>
+              <span id="zone-count">0 zones</span>
+            </div>
+            <div id="zone-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="problem" class="problem section">
+        <div class="section-heading centered">
+          <span class="eyebrow">Problem Statement</span>
+          <h2>Mobility barriers in everyday environments</h2>
+        </div>
+        <div class="problem-text">
+          <p>
+            Millions of visually impaired individuals face daily mobility challenges due to unexpected obstacles, crowded environments, and limited situational awareness.
+          </p>
+          <p>
+            Traditional aids provide limited environmental understanding. Percepta addresses this using AI-powered computer vision and intelligent obstacle detection.
+          </p>
+        </div>
+      </section>
+
+      <section id="features" class="features section">
+        <div class="section-heading">
+          <span class="eyebrow">Features</span>
+          <h2>Context-aware assistance for every step</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="icon-wrap">👁️</div>
+            <h3>Real-Time Object Detection</h3>
+            <p>Detect people, vehicles, furniture, bottles, bags, stairs and more.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-wrap">🧭</div>
+            <h3>5-Zone Navigation Grid</h3>
+            <p>Far Left, Left, Center, Right, and Far Right guidance zones.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-wrap">⚡</div>
+            <h3>Smart Priority Scoring</h3>
+            <p>Determine threat level based on distance and object position.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-wrap">🔊</div>
+            <h3>Instant Audio Alerts</h3>
+            <p>Generate navigation instructions in real time.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-wrap">📷</div>
+            <h3>Lightweight Hardware</h3>
+            <p>ESP32-CAM with laptop processing for portable use.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-wrap">💸</div>
+            <h3>Low Cost Solution</h3>
+            <p>An affordable assistive technology built for accessibility.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="workflow" class="workflow section">
+        <div class="section-heading centered">
+          <span class="eyebrow">How It Works</span>
+          <h2>From camera input to voice guidance</h2>
+        </div>
+        <div class="workflow-steps">
+          <div class="step-card">
+            <span>01</span>
+            <h3>ESP32-CAM</h3>
+          </div>
+          <div class="arrow">→</div>
+          <div class="step-card">
+            <span>02</span>
+            <h3>Live Video Stream</h3>
+          </div>
+          <div class="arrow">→</div>
+          <div class="step-card">
+            <span>03</span>
+            <h3>YOLOv8 Detection</h3>
+          </div>
+          <div class="arrow">→</div>
+          <div class="step-card">
+            <span>04</span>
+            <h3>Zone & Priority Analysis</h3>
+          </div>
+          <div class="arrow">→</div>
+          <div class="step-card highlight">
+            <span>05</span>
+            <h3>Voice Guidance</h3>
+          </div>
+        </div>
+      </section>
+
+      <section class="zones section">
+        <div class="section-heading">
+          <span class="eyebrow">Detection Zones</span>
+          <h2>Spatial awareness map</h2>
+        </div>
+        <div class="zones-layout">
+          <div class="zone-grid">
+            <span>Far Left</span>
+            <span>Left</span>
+            <span class="center-zone">Center</span>
+            <span>Right</span>
+            <span>Far Right</span>
+          </div>
+          <div class="alert-banner">DANGER – PERSON – CENTER – MOVE LEFT</div>
+        </div>
+      </section>
+
+      <section class="priority section">
+        <div class="section-heading">
+          <span class="eyebrow">Priority Scoring</span>
+          <h2>Risk assessment in real time</h2>
+        </div>
+        <div class="priority-content">
+          <div class="priority-visual">
+            <div class="ring outer">Nearby</div>
+            <div class="ring middle">Caution</div>
+            <div class="ring inner">Danger</div>
+          </div>
+          <div class="priority-formula">
+            <p>Score = 0.5 × (1 − Radius) + 0.5 × Area</p>
+            <ul>
+              <li><strong>Danger</strong> ≥ 0.70</li>
+              <li><strong>Caution</strong> ≥ 0.35</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="technology" class="technology section">
+        <div class="section-heading centered">
+          <span class="eyebrow">Technology Stack</span>
+          <h2>Built with intelligent vision tools</h2>
+        </div>
+        <div class="tech-grid">
+          <div class="tech-card">Python</div>
+          <div class="tech-card">OpenCV</div>
+          <div class="tech-card">YOLOv8</div>
+          <div class="tech-card">ESP32-CAM</div>
+          <div class="tech-card">Computer Vision</div>
+          <div class="tech-card">Artificial Intelligence</div>
+        </div>
+      </section>
+
+      <section class="stats section">
+        <div class="stat-card">
+          <div class="counter" data-target="80">0</div>
+          <span>Object Classes</span>
+        </div>
+        <div class="stat-card">
+          <div class="counter" data-target="5">0</div>
+          <span>Detection Zones</span>
+        </div>
+        <div class="stat-card">
+          <div class="counter" data-target="3">0</div>
+          <span>Priority Rings</span>
+        </div>
+        <div class="stat-card">
+          <div class="counter" data-target="100" data-display="&lt;100ms">0</div>
+          <span>Alert Response Time</span>
+        </div>
+      </section>
+
+      <section id="team" class="team section">
+        <div class="team-card">
+          <span class="eyebrow">Project Team</span>
+          <h2>Percepta</h2>
+          <p>“Seeing the World Through AI”</p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer" class="footer">
+      <p>Empowering Independent Mobility Through Artificial Intelligence</p>
+      <div class="socials">
+        <a href="#">X</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Email</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
